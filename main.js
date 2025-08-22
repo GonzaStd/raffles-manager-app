@@ -6,6 +6,9 @@ bar_urls = [
     "raffles.html",
     "profile.html"]
 
+isAuthenticated = false;
+
+// Main Menu
 function enable_bar(bool){
     let i = 0
     for (let child of bar.children) {
@@ -22,11 +25,13 @@ function enable_bar(bool){
     }
 }
 
-document.addEventListener('DOMContsentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     if (!bar.parentElement.classList.contains("no-auth")){
         enable_bar(true);
     }
-})
+
+}
+)
 
 
 
