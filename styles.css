@@ -77,8 +77,7 @@ header > nav > .no-auth > ul > li{
 section.authenticate{
     display: flex;
     flex-direction: column;
-    width: 640px;
-    height: 80vh;
+
     justify-content: center;
     align-items: center;
 }
@@ -95,32 +94,34 @@ div#auth-message > ul {
     gap: 0.5em;
 }
 
-section.authenticate > form {
+section.authenticate {
     display: flex;
     flex-direction: row;
+    width: 640px;
+    height: 80vh;
     height: fit-content;
-    width:inherit;
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 6px;
+    margin-top: 1em;
     padding: 2em;
-    background-color: #888888;
+    background-color: #b3b3b3;
 }
 
-section.authenticate > form > div {
+section.authenticate > form, div{
     display: flex;
     flex-direction: column;
     width: 50%;
     gap: 1em;
 }
 
-section.authenticate > form > div#credentials > input[type="text"], input[type="password"] {
+section.authenticate > form > input[type="text"], input[type="password"] {
     width: 15em;
     height: 1.5em;
     border-radius: 6px;
     border: 2.5px solid black
 }
 
-section.authenticate > form > div#credentials > input[type="button"], select {
+section.authenticate > form > input[type="submit"], select {
     width: fit-content;
 }

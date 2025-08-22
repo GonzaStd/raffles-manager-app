@@ -6,28 +6,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1 onload="authActionText()">Authentication</h1>
+    <select name="action" class="auth-action" onchange="authActionText()">
+        <option value="sign-up">Sign Up</option>
+        <option value="sign-in">Sign In</option>
+    </select>
 <section class="authenticate">
-    <h1>Authentication</h1>
-    <form action="">
-        <div id="auth-message">
+            <div id="auth-message">
             <img class="icon" src="resources/raffle.png" alt="raffle">
-            <h1>Sign in</h1>
+            <h1 class="auth-action"></h1>
             <p>So that you can:</p>
             <ul class="user-type-dependent"></ul>
-
         </div>
-        <div id="credentials">
+    <form id="credentials" onsubmit="authenticate(event)">
             <label for="username">Username</label>
             <input id="username" type="text">
             <label for="password">Password</label>
             <input id="password" type="password">
-            <label for="user-type">Select your user type</label>
+            <label on="change_permissions_message()" for="user-type">Select your user type</label>
             <select onchange="change_permissions_message()" id="user-type">
                 <option value="entity">Organization (Entity)</option>
                 <option value="manager">Manager</option>
             </select>
-            <input type="button" value="Submit">
-        </div>
+            <input type="submit" value="Submit">
     </form>
 </section>
 </body>

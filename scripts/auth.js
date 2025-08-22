@@ -31,7 +31,31 @@ function change_permissions_message() {
     }
 }
 
+let selectAuthAction = document.querySelector("select.auth-action");
+let h1AuthAction = document.querySelector("h1.auth-action");
+function authActionText(){
+    if (selectAuthAction.value == 'sign-up') {
+        h1AuthAction.textContent="Sign Up";
+    }
+    else if (selectAuthAction.value == 'sign-in') {
+        h1AuthAction.textContent="Sign In";
+    }
+    
+}
+
+function authenticate(e){
+    e.preventDefault();
+    console.log(e);
+    if (selectAuthAction.value == 'sign-up'){
+
+    }
+    else if (selectAuthAction.value == 'sign-in'){
+        
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     change_permissions_message();
-    }
+    authActionText();
+}
 )
