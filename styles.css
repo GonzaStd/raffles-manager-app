@@ -3,8 +3,16 @@
 }
 
 body {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100vw;
     background-color: #adcce6;
+}
+
+body > * {
+    width: fit-content;
 }
 
 header {
@@ -58,4 +66,61 @@ header > nav > div > ul > li > a {
 
 header > nav > .no-auth > ul > li{
     background-color: grey;
+}
+/* Auth */
+
+.icon {
+    width:80px;
+}
+
+
+section.authenticate{
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+}
+
+div#auth-message > h1, p, span, ul {
+    margin: 0;
+    padding: 0;
+}
+
+div#auth-message > ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+    gap: 0.5em;
+}
+
+section.authenticate > form {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width:inherit;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 6px;
+    padding: 2em;
+    background-color: #888888;
+}
+
+section.authenticate > form > div {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 1em;
+}
+
+section.authenticate > form > div#credentials > input[type="text"], input[type="password"] {
+    width: 15em;
+    height: 1.5em;
+    border-radius: 6px;
+    border: 2.5px solid black
+}
+
+section.authenticate > form > div#credentials > input[type="button"], select {
+    width: fit-content;
 }
