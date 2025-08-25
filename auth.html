@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1 onload="authActionText()">Authentication</h1>
-    <select name="action" class="auth-action" onchange="authActionText()">
+    <label for="select-auth-action">Action</label>
+    <select id="select-auth-action" name="action" class="auth-action" onchange="authActionText()">
         <option value="sign-up">Sign Up</option>
         <option value="sign-in">Sign In</option>
     </select>
-<section class="authenticate">
+
+    <section class="authenticate">
             <div id="auth-message">
             <img class="icon" src="resources/raffle.png" alt="raffle">
             <h1 class="auth-action"></h1>
@@ -23,7 +25,7 @@
             <input id="username" type="text">
             <label for="password">Password</label>
             <input id="password" type="password">
-            <label on="change_permissions_message()" for="user-type">Select your user type</label>
+            <label for="user-type">Select your user type</label>
             <select onchange="change_permissions_message()" id="user-type">
                 <option value="entity">Organization (Entity)</option>
                 <option value="manager">Manager</option>

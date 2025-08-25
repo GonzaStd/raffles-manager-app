@@ -1,12 +1,3 @@
-function setCookie(name, value, exdays) {
-  const date = new Date();
-  date.setTime(date.getTime() + (exdays*24*60*60*1000));
-  let expires = "expires="+ date.toUTCString();
-  document.cookie = name + "=" + value + ";" + expires + ";path=/";
-}
-
-
-
 bar = document.querySelector('#easy-access>ul');
 bar_urls = [
     "buyers.html",
@@ -41,6 +32,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 }
 )
-
-
-

@@ -98,7 +98,6 @@ section.authenticate {
     display: flex;
     flex-direction: row;
     width: 640px;
-    height: 80vh;
     height: fit-content;
     box-sizing: border-box;
     border: 2px solid black;
