@@ -2,6 +2,10 @@
     font-family: sans-serif, Arial;
 }
 
+.required {
+    color: red;
+}
+
 body {
     display:flex;
     justify-content: center;
@@ -73,38 +77,17 @@ header > nav > .no-auth > ul > li{
     width:80px;
 }
 
-
-section.authenticate{
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-}
-
-div#auth-message > h1, p, span, ul {
-    margin: 0;
-    padding: 0;
-}
-
-div#auth-message > ul {
-    display: flex;
-    flex-direction: column;
-    padding-left: 1em;
-    gap: 0.5em;
-}
-
 section.authenticate {
     display: flex;
     flex-direction: row;
     width: 640px;
-    height: fit-content;
+    height: 370px;
     box-sizing: border-box;
     border: 2px solid black;
     border-radius: 6px;
     margin-top: 1em;
     padding: 2em;
-    background-color: #b3b3b3;
+    background-color: rgb(191, 191, 191);
 }
 
 section.authenticate > form, div{
@@ -123,4 +106,20 @@ section.authenticate > form > input[type="text"], input[type="password"] {
 
 section.authenticate > form > input[type="submit"], select {
     width: fit-content;
+}
+
+div#auth-message {
+    height: fit-content;
+}
+
+div#auth-message > h1, p, span, ul {
+    margin: 0;
+    padding: 0;
+}
+
+div#auth-message > ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1em;
+    gap: 0.5em;
 }

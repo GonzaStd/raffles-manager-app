@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 onload="authActionText()">Authentication</h1>
+    <h1>Authentication</h1>
     <label for="select-auth-action">Action</label>
     <select id="select-auth-action" name="action" class="auth-action" onchange="authActionText()">
         <option value="sign-up">Sign Up</option>
@@ -21,16 +21,17 @@
             <ul class="user-type-dependent"></ul>
         </div>
     <form id="credentials" onsubmit="authenticate(event)">
-            <label for="username">Username</label>
+            <label for="username">Username <span class="required">*</span></label>
             <input id="username" type="text">
-            <label for="password">Password</label>
+            <label for="password">Password <span class="required">*</span></label>
             <input id="password" type="password">
-            <label for="user-type">Select your user type</label>
+            <label for="user-type">Select your user type <span class="required">*</span></label>
             <select onchange="change_permissions_message()" id="user-type">
                 <option value="entity">Organization (Entity)</option>
                 <option value="manager">Manager</option>
             </select>
             <input type="submit" value="Submit">
+        <span class="validation"></span>
     </form>
 </section>
 </body>

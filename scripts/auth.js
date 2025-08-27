@@ -49,15 +49,16 @@ class User {
             client_id: 'string',
             client_secret: ''
         }).toString();
+        let formJSON = JSON.stringify(formData);
 
         let response = await fetch(`${User.API_URL}/auth/${this.user_type}/login`,
             {
                 method: 'POST',
                 headers: {
-                    'accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'accept': 'application/json'
                 },
-                body: formData
+                body: formJSON
             }
         );
 
@@ -78,6 +79,7 @@ class User {
 // Auth, credentials
 let ul_permissions = document.querySelector("div#auth-message > ul.user-type-dependent");
 let userType = document.querySelector("select#user-type");
+let validationSpan = document.querySelector("span.validation");
 function change_permissions_message() {
     if (ul_permissions.firstChild){
         while(ul_permissions.firstChild){
@@ -137,7 +139,7 @@ async function authenticate(e){
 
             }
             else {
-                alert("You have to be logged in as")
+                alert("You have to be logged in as entity")
             }
 
         }
@@ -146,6 +148,14 @@ async function authenticate(e){
         new_user = new User(username, password, user_type);
         response = await new_user.signIn();
         console.log(response)
+        validationSpan.textContent = response.message
+        if (response.status !== 200){
+            validationSpan.style = "color: red;";
+        }
+        else {
+            validationSpan.style = "color: green;";
+        }
+
     }
 }
 
