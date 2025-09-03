@@ -6,41 +6,48 @@ function getCookie(name) {
 }
 class User {
     static API_URL = "https://raffles-manager-api-production.up.railway.app";
+    static AUTH_HEADERS = {
+        'Access-Control-Allow-Origin': `raffles-manager-api-production.up.railway.app, ${User.API_URL}, localhost`,
+        'accept': 'application/json'
+    }
     constructor(username, password, user_type, details) {
         if (!details) this.details = null; else this.details = details
         this.username = username;
         this.password = password;
         this.user_type = user_type;
-        this.credentials = null;
-        if (user_type === 'entity'){
-            this.credentials = {
-                name: this.username,
-                password: this.password,
-                details: this.details
-            };
-
-        }
-        else if (user_type === 'manager'){
-            this.credentials = {
-                username: this.username,
-                password: this.password
-            };
-
-        }
     }
 
     async signUp(){
-        let response = await fetch(`${this.API_URL}/auth/${this.user_type}/register`,
+        User.AUTH_HEADERS['Content-Type'] = 'application/json'
+        let formData = {
+            username: this.username,
+            password: this.password,
+            description: this.details,
+        };
+        let formJSON = JSON.stringify(formData);
+
+        let response = (await fetch(`${User.API_URL}/auth/${this.user_type}/register`,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                body: JSON.stringify(this.credentials)
+                headers: User.AUTH_HEADERS,
+                body: formJSON
             }
-            );
+        ));
+
+        let result = await response.json();
+        let json_result = JSON.parse(JSON.stringify(result));
+        if (response.ok){
+            console.log(response);
+            console.log(json_result);
+            return { status: response.status, message:json_result.message};
+        }
+        else{
+            //console.log(json_result)
+            return { status: response.status, message:json_result.detail[0].msg};
+        }
     }
     async signIn(){
+        User.AUTH_HEADERS['Content-Type'] = 'application/x-www-form-urlencoded'
         let formData = new URLSearchParams({
             grant_type: 'password',
             username: this.username,
@@ -54,10 +61,7 @@ class User {
         let response = await fetch(`${User.API_URL}/auth/${this.user_type}/login`,
             {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'accept': 'application/json'
-                },
+                headers: User.AUTH_HEADERS,
                 body: formJSON
             }
         );
@@ -131,7 +135,7 @@ async function authenticate(e){
     let username = getValue(e, 'username');
     let password = getValue(e, 'password');
     let user_type = userType.value; // User attempt to authenticate
-    //document.cookie = `user-type=${user_type};max-age=${30*24*60*60};path=/`;
+    new_user = new User(username, password, user_type);
     let signed_in_user_type = getCookie('signed-in-user-type'); // Already authenticated user if exists
     if (selectAuthAction.value === 'sign-up'){
         if (user_type === 'manager'){
@@ -143,9 +147,20 @@ async function authenticate(e){
             }
 
         }
+        else {
+            response = await new_user.signUp()
+            console.log(response)
+            validationSpan.textContent = response.message
+            if (response.status !== 200){
+                validationSpan.style = "color: red;";
+            }
+            else {
+                validationSpan.style = "color: green;";
+            }
+        }
     }
     else if (selectAuthAction.value === 'sign-in'){
-        new_user = new User(username, password, user_type);
+
         response = await new_user.signIn();
         console.log(response)
         validationSpan.textContent = response.message
